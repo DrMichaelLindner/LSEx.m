@@ -12,11 +12,11 @@ Using the Modifier you can change and modify existing L-systems, by
 building rules to iteratively replace chains of n characters of the 
 system with chains of m other ones. 
     
-See detailed description about the usage in the [Wiki](https://github.com/LSEx/LSEx.m/wiki), 
+See detailed description about the usage in the [Wiki](https://github.com/DrMichaelLindner/LSEx.m/wiki), 
 in the User Manual (pdf), by using the help buttons on the GUI or by 
 using the "help" or "doc" function in Matlab.
 
-**[Download LSEx.m](https://github.com/LSEx/LSEx.m)**
+**[Download LSEx.m](https://github.com/DrMichaelLindner/LSEx.m)**
 
 
 
