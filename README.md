@@ -30,8 +30,6 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 ## AUTHOR
 Michael Lindner  
-
-Author: Michael Lindner    
 Contact: ![contact email](contact.png?raw=true "contact email")
 
 
