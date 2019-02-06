@@ -19,6 +19,17 @@ using the "help" or "doc" function in Matlab.
 **[Download LSEx.m](https://github.com/DrMichaelLindner/LSEx.m)**
 
 
+## LICENCE
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License (GPLv3) as published
+by the Free Software Foundation;
+
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
+
+
+## AUTHOR
+Michael Lindner  
 
 Author: Michael Lindner    
 Contact: ![contact email](contact.png?raw=true "contact email")

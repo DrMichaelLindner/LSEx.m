@@ -20,13 +20,16 @@ function LSEx
 % 
 % For help and support feel free to contact: l-s-ex@gmx.co.uk
 % 
-% LSEx.m by Michael Lindner and Jamesd Douglas Saddy is licensed
-% under CC BY 4.0
 %
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY;
+% LICENCE
+% This program is free software; you can redistribute it and/or modify
+% it under the terms of the GNU General Public License (GPLv3) as published
+% by the Free Software Foundation;
 %
-% Version 1.0 by Michael Lindner 
+% This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
+%
+% AUTHOR
+% Michael Lindner   
 % University of Reading, 2017
 % Center for Integrative Neuroscience and Neurodynamics
 %
