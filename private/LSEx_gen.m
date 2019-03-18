@@ -39,7 +39,7 @@ if exist('generator_user_rules.mat', 'file') == 2
             
 end
 
-ver='0.92beta';
+ver='1.0';
 
 
 hfig=figure('Name', 'Lindenmayer Systems Generator', ...
