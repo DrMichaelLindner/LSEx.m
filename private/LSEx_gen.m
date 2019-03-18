@@ -65,22 +65,22 @@ GUI.grammar_type=uicontrol('Style', 'popupmenu',...
 
 
 
-%start value
+%Initial string
 uicontrol('Style','text', ...
     'HorizontalAlignment','left', ...
     'Position',[50,288,200,20], ...
-    'String','Start value:',...
+    'String','Initial string:',...
     'BackgroundColor',BackgroundColor);
 GUI.start_value=uicontrol('Style', 'edit',...
     'String', startvalue,...
     'BackgroundColor',BackgroundColor2,...
     'Position', [250,290,100,20]);
 
-% number of recursions
+% number of iterations
 uicontrol('Style','text', ...
     'HorizontalAlignment','left', ...
     'Position',[50,258,200,20], ...
-    'String','Number of recursions:',...
+    'String','Number of iterations:',...
     'BackgroundColor',BackgroundColor);
 GUI.rec_value=uicontrol('Style', 'edit',...
     'String', '',...
@@ -214,10 +214,10 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
         
         % generate grammar
         start=get(GUI.start_value,'String');
-        recursions=uint8(str2double(get(GUI.rec_value,'String')));
-        if recursions<1
-            errordlg('Number of recursion must be a positive intager value!','Input error')
-            error('Number of recursion must be a positive intager value!')
+        iterations=uint8(str2double(get(GUI.rec_value,'String')));
+        if iterations<1
+            errordlg('Number of iteration must be a positive intager value!','Input error')
+            error('Number of iteration must be a positive intager value!')
         end
         
         
@@ -228,10 +228,10 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
         end
         
         if ruletype==1
-            [grammar,grammar_length]=generator_classic(start,rule,recursions);
+            [grammar,grammar_length]=generator_classic(start,rule,iterations);
             filesuffix = '_clas_';
         elseif ruletype==2
-            [grammar,grammar_length]=generator_extended(start,rule,recursions);
+            [grammar,grammar_length]=generator_extended(start,rule,iterations);
             fn_rep={'step','cont', 'contskip'};
             filesuffix = ['_ext_' fn_rep{cfg.reptype},'_'];
         end
@@ -293,30 +293,30 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
     end
 
 
-    function [gram,gram_length]=generator_classic(start,rule,recursions)
+    function [gram,gram_length]=generator_classic(start,rule,iterations)
         
         %create empty cells and matrices
-        gram=cell(recursions,1);
-        gram_length=zeros(recursions,1);
+        gram=cell(iterations,1);
+        gram_length=zeros(iterations,1);
         
-        % check start value for values which are not in the rule
+        % check Initial string for values which are not in the rule
         cc=0;
         for rr=1:size(rule,2)
             cc=cc+length(strfind(start,rule{1,rr}));
         end
         if cc~=length(start)
-            errordlg('Start value contains more values than the rules!')
+            errordlg('Initial string contains more values than the rules!')
         end
         
-        % get and store start value
+        % get and store Initial string
         x=start;
         gram{1}=x;
         gram_length(1)=length(x);
         disp(x)
         
-        % start generating the recursions
+        % start generating the iterations
         count=1;
-        for rr=1:recursions
+        for rr=1:iterations
             count=count+1;
             %create empty cell
             c=cell(1,length(x));
@@ -337,7 +337,7 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
             % join strings in cell array into single string
             x=cell2str(c);
             
-            % store recursions
+            % store iterations
             gram{count}=x;
             gram_length(count)=length(x);
             disp(x)
@@ -347,19 +347,19 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
 
 
 
-    function [gram,gram_length]=generator_extended(start,rule,recursions)
+    function [gram,gram_length]=generator_extended(start,rule,iterations)
         
         %create empty cells and matrices
-        gram=cell(recursions,1);
-        gram_length=zeros(recursions,1);
+        gram=cell(iterations,1);
+        gram_length=zeros(iterations,1);
         
-        % check start value for values which are not in the rule
+        % check Initial string for values which are not in the rule
         %         cc=0;
         %         for rr=1:size(rule,2)
         %             cc=cc+length(strfind(start,rule{1,rr}));
         %         end
         %         if cc~=length(start)
-        %             errordlg('Start value contains more values than the rules!')
+        %             errordlg('Initial string contains more values than the rules!')
         %         end
         
         % get nr replace values from rule
@@ -376,15 +376,15 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
             maxl=max(l);
         end
         
-        % get and store start value
+        % get and store Initial string
         x=start;
         gram{1}=x;
         gram_length(1)=length(x);
         disp(x)
         
-        % start generating the recursions
+        % start generating the iterations
         count=1;
-        for rr=1:recursions
+        for rr=1:iterations
             count=count+1;
             if cfg.reptype==1
                 
@@ -411,7 +411,7 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
                 
                 x=cell2str(c);
                 
-                % store recursions
+                % store iterations
                 gram{count}=x;
                 gram_length(count)=length(x);
                 disp(x)
@@ -454,7 +454,7 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
                 
                 x=cell2str(c);
                 
-                % store recursions
+                % store iterations
                 gram{count}=x;
                 gram_length(count)=length(x);
                 disp(x)
@@ -750,7 +750,7 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
         grammars.name{1}='Fibonacci';
         grammars.values{1}=2;
         grammars.start{1}='0';
-        grammars.rules{1}={'0','1'; '1','10'}';
+        grammars.rules{1}={'0','1'; '1','01'}';
         
         grammars.name{2}='Algea';
         grammars.values{2}=2;
@@ -924,14 +924,14 @@ line([0.05,.95], [0.215, 0.215], 'Parent', a, 'Color',[.6 .6 .6])
             '     rule: 111-->2 ; 110-->3 ; 100-->4',...
             '     results: 0020304230423000',...
             '','',...
-            'The start value for the grammar generation is by default: 0 for',...
+            'The initial string for the grammar generation is by default: 0 for',...
             'for the predefined systems and for the user defined system it is',...
             'the value (lefthand side) of the first rule!',... 
             'But the start vlaue can be changes changed individually.',...
-            'IMPORTANT: The values in the "start values" field',...
+            'IMPORTANT: The values in the "Initial strings" field',...
             'need to be included within the rules you define!',...
             '',...
-            'With the number of recursions you can specify how often the',...
+            'With the number of iterations you can specify how often the',...
             'rules should be used iteratively.',...
             '',...
             'You need to specify an output folder by typing in a path or',...
